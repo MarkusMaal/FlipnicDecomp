@@ -1,0 +1,52 @@
+#include <stdexcept>
+#include "ps2_runtime_macros.h"
+#include "ps2_runtime.h"
+#include <ps2_recompiled_functions.h>
+#include <ps2_recompiled_stubs.h>
+
+#include "ps2_syscalls.h"
+#include "ps2_stubs.h"
+
+#ifdef PS2_FUNCTION_LOG_TRACKER
+#include "ps2_log.h"
+#endif
+
+// Function: entry_001ca310
+// Address: 0x1ca310 - 0x1ca328
+void entry_001ca310_0x1ca310(uint8_t* rdram, R5900Context* ctx, PS2Runtime *runtime) {
+#ifdef PS2_FUNCTION_LOG_TRACKER
+    PS_LOG_ENTRY("entry_001ca310_0x1ca310");
+#endif
+
+    ctx->pc = 0x1ca310u;
+
+    // 0x1ca310: 0x218c0  sll         $v1, $v0, 3
+    ctx->pc = 0x1ca310u;
+    SET_GPR_S32(ctx, 3, (int32_t)SLL32(GPR_U32(ctx, 2), 3));
+    // 0x1ca314: 0x210fc  dsll32      $v0, $v0, 3
+    ctx->pc = 0x1ca314u;
+    SET_GPR_U64(ctx, 2, GPR_U64(ctx, 2) << (32 + 3));
+    // 0x1ca318: 0x4610003  bgez        $v1, . + 4 + (0x3 << 2)
+    ctx->pc = 0x1CA318u;
+    {
+        const bool branch_taken_0x1ca318 = (GPR_S32(ctx, 3) >= 0);
+        ctx->pc = 0x1CA31Cu;
+        ctx->in_delay_slot = true;
+        ctx->branch_pc = 0x1CA318u;
+        // 0x1ca31c: 0x210ff  dsra32      $v0, $v0, 3 (Delay Slot)
+        SET_GPR_S64(ctx, 2, GPR_S64(ctx, 2) >> (32 + 3));
+        ctx->in_delay_slot = false;
+        if (branch_taken_0x1ca318) {
+            ctx->pc = 0x1CA328u;
+            return;
+        }
+    }
+    ctx->pc = 0x1CA320u;
+    // 0x1ca320: 0x24620007  addiu       $v0, $v1, 0x7
+    ctx->pc = 0x1ca320u;
+    SET_GPR_S32(ctx, 2, (int32_t)ADD32(GPR_U32(ctx, 3), 7));
+    // 0x1ca324: 0x210c3  sra         $v0, $v0, 3
+    ctx->pc = 0x1ca324u;
+    SET_GPR_S32(ctx, 2, SRA32(GPR_S32(ctx, 2), 3));
+    ctx->pc = 0x1ca328u;
+}

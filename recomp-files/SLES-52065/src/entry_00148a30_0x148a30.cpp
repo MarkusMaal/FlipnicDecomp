@@ -1,0 +1,54 @@
+#include <stdexcept>
+#include "ps2_runtime_macros.h"
+#include "ps2_runtime.h"
+#include <ps2_recompiled_functions.h>
+#include <ps2_recompiled_stubs.h>
+
+#include "ps2_syscalls.h"
+#include "ps2_stubs.h"
+
+#ifdef PS2_FUNCTION_LOG_TRACKER
+#include "ps2_log.h"
+#endif
+
+// Function: entry_00148a30
+// Address: 0x148a30 - 0x148a4c
+void entry_00148a30_0x148a30(uint8_t* rdram, R5900Context* ctx, PS2Runtime *runtime) {
+#ifdef PS2_FUNCTION_LOG_TRACKER
+    PS_LOG_ENTRY("entry_00148a30_0x148a30");
+#endif
+
+    ctx->pc = 0x148a30u;
+
+    // 0x148a30: 0x8dd00000  lw          $s0, 0x0($t6)
+    ctx->pc = 0x148a30u;
+    SET_GPR_S32(ctx, 16, (int32_t)READ32(ADD32(GPR_U32(ctx, 14), 0)));
+    // 0x148a34: 0x31880  sll         $v1, $v1, 2
+    ctx->pc = 0x148a34u;
+    SET_GPR_S32(ctx, 3, (int32_t)SLL32(GPR_U32(ctx, 3), 2));
+    // 0x148a38: 0x8e100000  lw          $s0, 0x0($s0)
+    ctx->pc = 0x148a38u;
+    SET_GPR_S32(ctx, 16, (int32_t)READ32(ADD32(GPR_U32(ctx, 16), 0)));
+    // 0x148a3c: 0x2031821  addu        $v1, $s0, $v1
+    ctx->pc = 0x148a3cu;
+    SET_GPR_S32(ctx, 3, (int32_t)ADD32(GPR_U32(ctx, 16), GPR_U32(ctx, 3)));
+    // 0x148a40: 0xadb00000  sw          $s0, 0x0($t5)
+    ctx->pc = 0x148a40u;
+    WRITE32(ADD32(GPR_U32(ctx, 13), 0), GPR_U32(ctx, 16));
+    // 0x148a44: 0x10000032  b           . + 4 + (0x32 << 2)
+    ctx->pc = 0x148A44u;
+    {
+        const bool branch_taken_0x148a44 = (GPR_U64(ctx, 0) == GPR_U64(ctx, 0));
+        ctx->pc = 0x148A48u;
+        ctx->in_delay_slot = true;
+        ctx->branch_pc = 0x148A44u;
+        // 0x148a48: 0xad830000  sw          $v1, 0x0($t4) (Delay Slot)
+        WRITE32(ADD32(GPR_U32(ctx, 12), 0), GPR_U32(ctx, 3));
+        ctx->in_delay_slot = false;
+        if (branch_taken_0x148a44) {
+            ctx->pc = 0x148B10u;
+            return;
+        }
+    }
+    ctx->pc = 0x148A4Cu;
+}

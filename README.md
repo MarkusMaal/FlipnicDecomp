@@ -8,6 +8,8 @@ Currently only PAL version is here, NTSC versions have some differences.
 
 ## Files
 
+- recomp-files: Files generated for use with PS2Recomp project
+    - you should modify the flipnic.toml file to point to actual files/directories before using it
 - SLES_520.65: Executable for the PAL version of the game (V1.01)
 - Flipnic_YYYY_MM_DD.gar: Ghidra project archive
 
